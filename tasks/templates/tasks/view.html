@@ -1,0 +1,77 @@
+{% extends 'tasks/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+       <div class="col-12">
+          <div class="page-title-box">
+
+             <div class="clearfix"></div>
+          </div>
+       </div>
+    </div>
+    <div class="row">
+       <div class="col-lg-12">
+          <div class="card">
+             <div class="card-header">
+                <div class="row">
+                   <div class="col-md-11 card_header_title">
+                      <i class="fab fa-gg-circle"></i>
+                      View Task Log
+                   </div>
+                   <div class="col-md-1 text-right card_header_btn">
+                      <a class="btn btn-sm btn-secondary" href="{% url 'tasks:all_tasks' %}">
+                      <i class="fa fa-plus-circle"></i>
+                      All Tasks Logs
+                      </a>
+                   </div>
+                </div>
+                <div class="clr"></div>
+             </div>
+             <div class="card-body">
+                <div class="row">
+                   <div class="col-md-2 col-sm-2 col-2"></div>
+                   <div class="col-md-8 col-sm-8 col-8">
+                      <table class="table table-bordered table-striped custom_view_table">
+                        <tr>
+                           <td>Task Name</td>
+                           <td>:</td>
+                           <td>{{task.title}}</td>
+                        </tr>
+                         <tr>
+                            <td>Description</td>
+                            <td>:</td>
+                            <td>{{task.description}} </td>
+                         </tr>
+                         <tr>
+                            <td>Photo</td>
+                            <td>:</td>
+                            <td>
+                              {% if task.photos.all %}
+                                  {% for photo in task.photos.all %}
+                                      <img src="{{ photo.image.url }}" alt="{{ task.title }} - Photo" style="max-width: 100px; max-height: 100px;">
+                                  {% endfor %}
+                              {% else %}
+                                  No photos available
+                              {% endif %}
+                          </td>
+                         </tr>
+                         
+                      </table>
+                   </div>
+                   <div class="col-md-2 col-sm-2 col-2"></div>
+                </div>
+             </div>
+             <div class="card-footer">
+                <!-- <div class="btn-group">
+                   <button type="button" class="btn btn-purple waves-effect">PRINT</button>
+                   <button type="button" class="btn btn-dark waves-effect">PDF</button>
+                   <button type="button" class="btn btn-pink waves-effect">EXEL</button>
+                   <button type="button" class="btn btn-success waves-effect">CSV</button>
+                </div> -->
+             </div>
+          </div>
+       </div>
+    </div>
+ </div>
+{% endblock content %}
